@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceo44f3u14hlm"]
+
+[ext_resource type="Script" path="res://Scenes/maps/test_map.gd" id="1_k8s62"]
+[ext_resource type="Texture2D" uid="uid://b8725vkgyjjo8" path="res://Assets/maps/MonkeyMeadow_No_UI.webp" id="1_p0w4w"]
+[ext_resource type="Script" path="res://Scenes/maps/EnemySpawner.gd" id="2_351sa"]
+
+[sub_resource type="Curve2D" id="Curve2D_bs0b4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -68, 321, -19.6889, 14.3495, 19.6889, -14.3495, -54, 174, -15.749, 17.0089, 15.749, -17.0089, 281, 166, 14.4891, 23.9385, -14.4891, -23.9385, 294, -114, 23.3085, -13.8591, -23.3085, 13.8591, 157, -124, 25.8284, -18.2689, -25.8284, 18.2689, 140, 56, 13.2292, -8.18949, -13.2292, 8.18949, -393, 66, -0.629961, -14.4891, 0.629961, 14.4891, -390, 213, -22.0486, -10.0794, 22.0486, 10.0794, -204, 228, -17.6389, 13.2292, 17.6389, -13.2292, -195, -238, 0, 0, 0, 0, -6, -231, 23.9385, -23.3085, -23.9385, 23.3085, -14, -60, 0, 0, 0, 0, -577, -59)
+}
+point_count = 13
+
+[node name="TestMap" type="Node2D"]
+script = ExtResource("1_k8s62")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("1_p0w4w")
+
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_bs0b4")
+script = ExtResource("2_351sa")
+
+[node name="SpawnDelay" type="Timer" parent="EnemyPath"]
+wait_time = 0.2
+
+[node name="Turrets" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[connection signal="timeout" from="EnemyPath/SpawnDelay" to="EnemyPath" method="_on_spawn_delay_timeout"]

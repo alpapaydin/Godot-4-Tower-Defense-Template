@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://cw8dl6kw77qmf"]
+
+[ext_resource type="Script" path="res://Scenes/turrets/bullet/bulletBase.gd" id="1_a00cp"]
+[ext_resource type="Texture2D" uid="uid://b2sgf1p7pwwp0" path="res://Assets/bullets/bullet1.png" id="1_uc63r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucnyi"]
+atlas = ExtResource("1_uc63r")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hvj4"]
+atlas = ExtResource("1_uc63r")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugvy0"]
+atlas = ExtResource("1_uc63r")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jab5"]
+atlas = ExtResource("1_uc63r")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4y4u"]
+atlas = ExtResource("1_uc63r")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wohwn"]
+atlas = ExtResource("1_uc63r")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cuxae"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucnyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hvj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugvy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jab5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4y4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wohwn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_govwh"]
+radius = 4.5
+
+[node name="BulletBase" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_a00cp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_cuxae")
+autoplay = "default"
+frame_progress = 0.35134
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_govwh")
