@@ -28,11 +28,11 @@ wait_time = 0.2
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="Area2D" parent="."]
+[node name="Obstacles" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-580, -84, -230, -83, -222, -250, 11, -252, 21, -202, 19, -50, -35, -32, -166, -34, -168, -79, -36, -85, -31, -211, -171, -211, -170, -80, -166, -33, -166, 32, 106, 28, 130, -141, 322, -145, 309, 177, -20, 193, -39, 372, -104, 372, -82, 151, 256, 138, 265, -89, 192, -93, 169, 79, -168, 87, -168, 201, -222, 252, -383, 247, -420, 191, -418, 59, -361, 34, -235, 38, -232, 87, -356, 84, -357, 207, -234, 203, -232, -34, -579, -35)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(-580, -84, -230, -83, -222, -250, 11, -252, 21, -202, 19, -50, -35, -32, -166, -34, -168, -79, -36, -85, -31, -211, -171, -211, -170, -80, -166, -33, -166, 32, 106, 28, 130, -141, 322, -145, 309, 177, -20, 193, -39, 372, -104, 372, -82, 151, 256, 138, 265, -89, 192, -93, 166, 71, -168, 87, -168, 201, -222, 252, -383, 247, -420, 191, -418, 59, -361, 34, -235, 38, -232, 87, -356, 84, -357, 207, -234, 203, -232, -34, -579, -35)
 
 [connection signal="timeout" from="EnemyPath/SpawnDelay" to="EnemyPath" method="_on_spawn_delay_timeout"]

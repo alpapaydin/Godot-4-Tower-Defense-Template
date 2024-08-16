@@ -12,7 +12,7 @@ func _ready():
 	spawn_next_wave()
 
 func check_next_wave():
-	if active_enemies == 0:
+	if active_enemies == 0 and not get_parent().gameOver:
 		spawn_next_wave()
 
 func spawn_new_enemy():

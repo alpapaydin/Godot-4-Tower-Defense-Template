@@ -26,6 +26,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7h0ns"]
+radius = 13.0
 
 [node name="EnemyMover" type="PathFollow2D"]
 loop = false
