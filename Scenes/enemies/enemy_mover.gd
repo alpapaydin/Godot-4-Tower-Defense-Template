@@ -3,6 +3,9 @@ extends PathFollow2D
 enum State {walking, damaged}
 var state = State.walking
 
+var hp := 10.0
+var baseDamage := 5.0
+
 @onready var spawner := get_parent() as EnemyPath
 func _ready():
 	add_to_group("enemy")
@@ -22,4 +25,11 @@ func _process(_delta):
 
 func finished_path():
 	spawner.active_enemies -= 1
+	Globals.currentMap.get_base_damage(baseDamage)
 	queue_free()
+
+func get_damage(damage):
+	hp -= damage
+	if hp <= 0:
+		spawner.active_enemies -= 1
+		queue_free()

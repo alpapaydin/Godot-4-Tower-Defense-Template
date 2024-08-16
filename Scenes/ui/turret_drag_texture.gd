@@ -18,10 +18,9 @@ func _process(_delta):
 	if Input.is_action_just_released("LeftClick") and placeholder:
 		check_can_drop()
 
-func _get_drag_data(at_position):
+func _get_drag_data(_at_position):
 	visible = false
 	create_placeholder()
-	print(at_position)
 
 func check_can_drop():
 	position = initial_pos
@@ -44,6 +43,6 @@ func failed_drop():
 func create_placeholder():
 	var turretScene := preload("res://Scenes/turrets/turret.tscn")
 	var turret = turretScene.instantiate()
-	Configs.turretsNode.add_child(turret)
+	Globals.turretsNode.add_child(turret)
 	placeholder = turret
 	placeholder.set_placeholder()

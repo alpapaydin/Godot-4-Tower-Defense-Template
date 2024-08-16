@@ -5,6 +5,19 @@ var deployed = false
 var can_place = false
 #Attacking
 var current_target = null
+#Stats
+var attack_speed := 1.0:
+	set(value):
+		attack_speed = value
+		$AttackCooldown.wait_time = 1.0/value
+		
+var range_multiplier := 1.0:
+	set(value):
+		range_multiplier = value
+		
+var damage := 1.0
+var bulletSpeed := 200.0
+var bulletPierce := 1
 
 func _process(_delta):
 	if not deployed:
@@ -13,8 +26,10 @@ func _process(_delta):
 		else:
 			not_colliding()
 	else:
-		if current_target:
+		if is_instance_valid(current_target):
 			look_at(current_target.position)
+		else:
+			try_get_closest_target()
 
 func set_placeholder():
 	modulate = Color("6eff297a")
@@ -52,11 +67,15 @@ func try_get_closest_target():
 			closest_area = area
 	if closest_area:
 		current_target = closest_area.get_parent()
-		
+
 func attack():
-	if current_target:
+	if is_instance_valid(current_target):
+		attack_speed = 5
 		var projectileScene := preload("res://Scenes/turrets/bullet/bulletBase.tscn")
 		var projectile := projectileScene.instantiate()
-		Configs.projectilesNode.add_child(projectile)
+		projectile.damage = damage
+		projectile.speed = bulletSpeed
+		projectile.pierce = bulletPierce
+		Globals.projectilesNode.add_child(projectile)
 		projectile.position = position
 		projectile.target = current_target.position
