@@ -30,6 +30,7 @@ func _on_upgrade_button_pressed():
 	if check_can_upgrade():
 		Globals.currentMap.gold -= get_upgrade_price()
 		turret.upgrade_turret()
+		check_can_upgrade()
 
 func get_upgrade_price():
 	return turret.turret_level * Data.turrets[turret.turret_type]["upgrade_cost"]
@@ -41,11 +42,13 @@ func get_sell_price():
 	return round(total_cost * sell_modifier)
 
 func check_can_upgrade(_new_gold=0):
-	if Globals.currentMap.gold >= get_upgrade_price():
-		%UpgradeButton.disabled = false
-		return true
-	%UpgradeButton.disabled = true
-	return false
+	if turret.turret_level == Data.turrets[turret.turret_type]["max_level"]:
+		%UpgradeButton.text = "Maxed Out"
+		%UpgradeButton.disabled = true
+	else:
+		%UpgradeButton.disabled = Globals.currentMap.gold < get_upgrade_price()
+	return not %UpgradeButton.disabled
+
 
 func _on_sell_button_pressed():
 	queue_free()
