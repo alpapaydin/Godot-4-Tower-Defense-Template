@@ -5,7 +5,6 @@ signal goldChanged(newGold)
 @warning_ignore("unused_signal")
 signal baseHpChanged(newHp, maxHp)
 
-
 var turretsNode : Node2D
 var projectilesNode : Node2D
 var currentMap : Node2D
@@ -17,4 +16,3 @@ func restart_current_level():
 	currentMap.queue_free()
 	var newMap = currentLevelScene.instantiate()
 	mainNode.add_child(newMap)
-	

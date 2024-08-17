@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cb3v7e6vydle1"]
 
 [ext_resource type="Script" path="res://Scenes/enemies/enemy_mover.gd" id="1_e187i"]
-[ext_resource type="Texture2D" uid="uid://dhvmjhj28g7li" path="res://Assets/enemies/DinoSprites - mort.png" id="2_bpnqn"]
+[ext_resource type="Texture2D" uid="uid://dhvmjhj28g7li" path="res://Assets/enemies/dino1.png" id="2_bpnqn"]
 
 [sub_resource type="Animation" id="Animation_mhspp"]
 resource_name = "move"

@@ -18,6 +18,7 @@ func check_next_wave():
 func spawn_new_enemy():
 	var enemyScene := preload("res://Scenes/enemies/enemy_mover.tscn")
 	var enemy = enemyScene.instantiate()
+	enemy.enemy_type = Data.enemies.keys().pick_random()
 	add_child(enemy)
 	active_enemies += 1
 

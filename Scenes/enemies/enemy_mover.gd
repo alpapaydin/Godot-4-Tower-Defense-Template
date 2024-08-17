@@ -1,10 +1,18 @@
 extends PathFollow2D
 
+var enemy_type := "":
+	set(val):
+		enemy_type = val
+		$Sprite2D.texture = load(Data.enemies[val]["sprite"])
+		for stat in Data.enemies[val]["stats"].keys():
+			set(stat, Data.enemies[val]["stats"][stat])
+
 enum State {walking, damaged}
 var state = State.walking
-
+var goldYield := 10.0
 var hp := 10.0
 var baseDamage := 5.0
+var speed := 1.0
 
 @onready var spawner := get_parent() as EnemyPath
 func _ready():
@@ -13,7 +21,7 @@ func _ready():
 func _process(_delta):
 	if state == State.walking:
 		#Move
-		progress_ratio += 0.0005
+		progress_ratio += 0.0005 * speed
 		if progress_ratio == 1:
 			finished_path()
 			return
@@ -32,4 +40,5 @@ func get_damage(damage):
 	hp -= damage
 	if hp <= 0:
 		spawner.active_enemies -= 1
+		Globals.currentMap.gold += goldYield
 		queue_free()

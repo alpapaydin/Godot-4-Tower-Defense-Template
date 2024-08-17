@@ -1,11 +1,17 @@
 extends TextureRect
+
+var turretType := ""
+
 var can_grab = false
 var grabbed_offset = Vector2()
 var initial_pos := position
 var placeholder = null
 
+func _ready():
+	Globals.goldChanged.connect(check_can_purchase)
+
 func _gui_input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and check_can_purchase(Globals.currentMap.gold):
 		can_grab = event.pressed
 		grabbed_offset = position - get_global_mouse_position()
 
@@ -19,8 +25,9 @@ func _process(_delta):
 		check_can_drop()
 
 func _get_drag_data(_at_position):
-	visible = false
-	create_placeholder()
+	if check_can_purchase(Globals.currentMap.gold):
+		visible = false
+		create_placeholder()
 
 func check_can_drop():
 	position = initial_pos
@@ -33,16 +40,25 @@ func check_can_drop():
 	failed_drop()
 
 func build():
+	Globals.currentMap.gold -= Data.turrets[turretType]["cost"]
 	placeholder.build()
 
 func failed_drop():
 	if placeholder:
 		placeholder.queue_free()
 		placeholder = null
-	
+
 func create_placeholder():
-	var turretScene := preload("res://Scenes/turrets/turret.tscn")
+	var turretScene := load(Data.turrets[turretType]["scene"])
 	var turret = turretScene.instantiate()
+	turret.turret_type = turretType
 	Globals.turretsNode.add_child(turret)
 	placeholder = turret
 	placeholder.set_placeholder()
+
+func check_can_purchase(newGold):
+	if newGold >= Data.turrets[turretType]["cost"]:
+		get_parent().can_purchase = true
+		return true
+	get_parent().can_purchase = false
+	return false

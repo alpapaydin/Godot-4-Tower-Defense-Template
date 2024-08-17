@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhvmjhj28g7li"
-path="res://.godot/imported/DinoSprites - mort.png-48cbd7762d9b58ab1240a0bd8b960d40.ctex"
+uid="uid://b5wp74eaaqsil"
+path="res://.godot/imported/Bullet Pixel 8x8 part 1 A.png-f4db625523731446ada510a49afccd02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/enemies/DinoSprites - mort.png"
-dest_files=["res://.godot/imported/DinoSprites - mort.png-48cbd7762d9b58ab1240a0bd8b960d40.ctex"]
+source_file="res://Assets/bullets/Bullet Pixel 8x8 part 1 A.png"
+dest_files=["res://.godot/imported/Bullet Pixel 8x8 part 1 A.png-f4db625523731446ada510a49afccd02.ctex"]
 
 [params]
 

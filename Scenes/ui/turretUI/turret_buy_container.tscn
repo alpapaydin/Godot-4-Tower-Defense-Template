@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0otd33ubv3hq"]
+
+[ext_resource type="Script" path="res://Scenes/ui/turretUI/turret_buy_container.gd" id="1_7686v"]
+[ext_resource type="Script" path="res://Scenes/ui/turretUI/turret_drag_texture.gd" id="2_8yuvs"]
+
+[node name="TurretBuyContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+script = ExtResource("1_7686v")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 0
+expand_mode = 5
+script = ExtResource("2_8yuvs")
+
+[node name="CantBuy" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+color = Color(1, 0.396078, 0, 0.345098)
+
+[node name="CostLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+text = "31"
+horizontal_alignment = 2
+vertical_alignment = 2

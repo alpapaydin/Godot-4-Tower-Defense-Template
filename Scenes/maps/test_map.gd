@@ -3,12 +3,17 @@ extends Node2D
 var gameOver := false
 var baseMaxHp := 20.0
 var baseHP := baseMaxHp
+var gold := 100:
+	set(value):
+		gold = value
+		Globals.goldChanged.emit(value)
 
 func _ready():
 	Globals.turretsNode = $Turrets
 	Globals.projectilesNode = $Projectiles
 	Globals.currentMap = self
 	Globals.baseHpChanged.emit(baseHP, baseMaxHp)
+	Globals.goldChanged.emit(gold)
 
 func get_base_damage(damage):
 	if gameOver:

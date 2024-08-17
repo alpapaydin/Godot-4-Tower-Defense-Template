@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://chgwxhrtw1lln"]
 
 [ext_resource type="PackedScene" uid="uid://ceo44f3u14hlm" path="res://Scenes/maps/test_map.tscn" id="1_vg3wp"]
-[ext_resource type="Texture2D" uid="uid://83kim8fm0f2s" path="res://Assets/turrets/techno turret2.png" id="2_4q1tb"]
 [ext_resource type="Script" path="res://Scenes/ui/hud.gd" id="2_cy82p"]
-[ext_resource type="Script" path="res://Scenes/ui/turret_drag_texture.gd" id="3_bl72m"]
+[ext_resource type="PackedScene" uid="uid://d0otd33ubv3hq" path="res://Scenes/ui/turretUI/turret_buy_container.tscn" id="3_pljl8"]
+[ext_resource type="Script" path="res://Scenes/ui/turretUI/turrets_panel.gd" id="3_ryupq"]
 
 [node name="main" type="Node2D"]
 
@@ -23,28 +23,6 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_cy82p")
 
-[node name="Turrets" type="HBoxContainer" parent="UI/HUD"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -24.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="TestTurret" type="PanelContainer" parent="UI/HUD/Turrets"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/HUD/Turrets/TestTurret"]
-texture_filter = 1
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-mouse_filter = 0
-texture = ExtResource("2_4q1tb")
-script = ExtResource("3_bl72m")
-
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD"]
 layout_mode = 1
 anchors_preset = 1
@@ -54,7 +32,28 @@ offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
+[node name="GoldLabel" type="Label" parent="UI/HUD/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="HPLabel" type="Label" parent="UI/HUD/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "HP: 20/20"
+
+[node name="TurretsPanel" type="PanelContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("3_ryupq")
+
+[node name="Turrets" type="HBoxContainer" parent="UI/HUD/TurretsPanel"]
+layout_mode = 2
+
+[node name="TurretBuyContainer" parent="UI/HUD/TurretsPanel/Turrets" instance=ExtResource("3_pljl8")]
+layout_mode = 2

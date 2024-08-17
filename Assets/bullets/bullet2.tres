@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://djv5uvpfktdlq"]
+
+[ext_resource type="Texture2D" uid="uid://b5wp74eaaqsil" path="res://Assets/bullets/Bullet Pixel 8x8 part 1 A.png" id="1_3a686"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7wy7"]
+atlas = ExtResource("1_3a686")
+region = Rect2(0, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64g5p"]
+atlas = ExtResource("1_3a686")
+region = Rect2(16, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8elgn"]
+atlas = ExtResource("1_3a686")
+region = Rect2(32, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4o3c"]
+atlas = ExtResource("1_3a686")
+region = Rect2(48, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqqeg"]
+atlas = ExtResource("1_3a686")
+region = Rect2(64, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa804"]
+atlas = ExtResource("1_3a686")
+region = Rect2(80, 144, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7wy7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64g5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8elgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4o3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqqeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fa804")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
