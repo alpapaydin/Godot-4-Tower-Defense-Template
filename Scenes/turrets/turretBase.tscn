@@ -33,6 +33,7 @@ shape = SubResource("CircleShape2D_kae7m")
 [node name="AttackCooldown" type="Timer" parent="."]
 autostart = true
 
+[connection signal="input_event" from="CollisionArea" to="." method="_on_collision_area_input_event"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="attack"]

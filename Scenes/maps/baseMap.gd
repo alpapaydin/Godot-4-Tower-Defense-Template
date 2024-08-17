@@ -1,5 +1,13 @@
 extends Node2D
 
+var map_type := "":
+	set(val):
+		map_type = val
+		baseHP = Data.maps[val]["baseHp"]
+		baseMaxHp = Data.maps[val]["baseHp"]
+		gold = Data.maps[val]["startingGold"]
+		$PathSpawner.map_type = val
+
 var gameOver := false
 var baseMaxHp := 20.0
 var baseHP := baseMaxHp
@@ -12,8 +20,8 @@ func _ready():
 	Globals.turretsNode = $Turrets
 	Globals.projectilesNode = $Projectiles
 	Globals.currentMap = self
-	Globals.baseHpChanged.emit(baseHP, baseMaxHp)
-	Globals.goldChanged.emit(gold)
+	#Globals.baseHpChanged.emit(baseHP, baseMaxHp)
+	#Globals.goldChanged.emit(gold)
 
 func get_base_damage(damage):
 	if gameOver:

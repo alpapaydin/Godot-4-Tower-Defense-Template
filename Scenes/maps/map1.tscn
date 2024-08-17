@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ceo44f3u14hlm"]
 
-[ext_resource type="Script" path="res://Scenes/maps/test_map.gd" id="1_k8s62"]
-[ext_resource type="Texture2D" uid="uid://b8725vkgyjjo8" path="res://Assets/maps/MonkeyMeadow_No_UI.webp" id="1_p0w4w"]
+[ext_resource type="Script" path="res://Scenes/maps/baseMap.gd" id="1_k8s62"]
+[ext_resource type="Texture2D" uid="uid://b8725vkgyjjo8" path="res://Assets/maps/map1.webp" id="1_p0w4w"]
 [ext_resource type="Script" path="res://Scenes/maps/EnemySpawner.gd" id="2_351sa"]
 
 [sub_resource type="Curve2D" id="Curve2D_bs0b4"]
@@ -23,6 +23,12 @@ script = ExtResource("2_351sa")
 
 [node name="SpawnDelay" type="Timer" parent="PathSpawner"]
 wait_time = 0.2
+one_shot = true
+
+[node name="WaveDelayTimer" type="Timer" parent="PathSpawner"]
+wait_time = 5.0
+one_shot = true
+autostart = true
 
 [node name="Turrets" type="Node2D" parent="."]
 
@@ -36,3 +42,4 @@ collision_mask = 2
 polygon = PackedVector2Array(-580, -84, -230, -83, -222, -250, 11, -252, 21, -202, 19, -50, -35, -32, -166, -34, -168, -79, -36, -85, -31, -211, -171, -211, -170, -80, -166, -33, -166, 32, 106, 28, 130, -141, 322, -145, 309, 177, -20, 193, -39, 372, -104, 372, -82, 151, 256, 138, 265, -89, 192, -93, 166, 71, -168, 87, -168, 201, -222, 252, -383, 247, -420, 191, -418, 59, -361, 34, -235, 38, -232, 87, -356, 84, -357, 207, -234, 203, -232, -34, -579, -35)
 
 [connection signal="timeout" from="PathSpawner/SpawnDelay" to="PathSpawner" method="_on_spawn_delay_timeout"]
+[connection signal="timeout" from="PathSpawner/WaveDelayTimer" to="PathSpawner" method="_on_wave_delay_timer_timeout"]

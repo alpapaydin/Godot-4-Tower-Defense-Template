@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://v27byrwdrux5"]
+
+[ext_resource type="Texture2D" uid="uid://b8725vkgyjjo8" path="res://Assets/maps/map1.webp" id="1_6vcye"]
+[ext_resource type="Script" path="res://Scenes/ui/mainMenu/map_container.gd" id="1_yc64c"]
+
+[node name="MapContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(120, 80)
+script = ExtResource("1_yc64c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_6vcye")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Test map name"
+vertical_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

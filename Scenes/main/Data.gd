@@ -50,6 +50,7 @@ const enemies := {
 			"baseDamage": 5.0,
 			"goldYield": 10.0,
 			},
+		"difficulty": 1.0,
 		"sprite": "res://Assets/enemies/dino1.png",
 	},
 	"blueDino": {
@@ -59,6 +60,7 @@ const enemies := {
 			"baseDamage": 5.0,
 			"goldYield": 10.0,
 			},
+		"difficulty": 2.0,
 		"sprite": "res://Assets/enemies/dino2.png",
 	},
 	"yellowDino": {
@@ -68,6 +70,7 @@ const enemies := {
 			"baseDamage": 1.0,
 			"goldYield": 10.0,
 			},
+		"difficulty": 3.0,
 		"sprite": "res://Assets/enemies/dino3.png",
 	},
 	"greenDino": {
@@ -77,6 +80,24 @@ const enemies := {
 			"baseDamage": 1.0,
 			"goldYield": 10.0,
 			},
+		"difficulty": 4.0,
 		"sprite": "res://Assets/enemies/dino4.png",
+	}
+}
+
+const maps := {
+	"map1": {
+		"name": "Grass Map",
+		"bg": "res://Assets/maps/map1.webp",
+		"scene": "res://Scenes/maps/map1.tscn",
+		"baseHp": 10,
+		"startingGold": 100,
+		"spawner_settings":
+			{
+			"difficulty": {"initial": 1.0, "increase": 1.2, "multiplies": true},
+			"max_waves": 10,
+			"wave_spawn_count": 10,
+			"special_waves": {},
+			},
 	}
 }

@@ -84,3 +84,9 @@ func attack():
 		projectile.target = current_target.position
 	else:
 		try_get_closest_target()
+
+func _on_collision_area_input_event(_viewport, _event, _shape_idx):
+	if deployed and Input.is_action_just_pressed("LeftClick"):
+		var turretDetailsScene := preload("res://Scenes/ui/turretUI/turret_details.tscn")
+		var details := turretDetailsScene.instantiate()
+		Globals.hud.add_child(details)

@@ -57,8 +57,9 @@ func create_placeholder():
 	placeholder.set_placeholder()
 
 func check_can_purchase(newGold):
-	if newGold >= Data.turrets[turretType]["cost"]:
-		get_parent().can_purchase = true
-		return true
-	get_parent().can_purchase = false
-	return false
+	if turretType:
+		if newGold >= Data.turrets[turretType]["cost"]:
+			get_parent().can_purchase = true
+			return true
+		get_parent().can_purchase = false
+		return false

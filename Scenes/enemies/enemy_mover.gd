@@ -13,6 +13,7 @@ var goldYield := 10.0
 var hp := 10.0
 var baseDamage := 5.0
 var speed := 1.0
+var is_destroyed := false
 
 @onready var spawner := get_parent() as EnemyPath
 func _ready():
@@ -32,13 +33,19 @@ func _process(_delta):
 		$Sprite2D.flip_v = abs(angle) > 90
 
 func finished_path():
-	spawner.active_enemies -= 1
+	if is_destroyed:
+		return
+	is_destroyed = true
+	spawner.enemy_destroyed()
 	Globals.currentMap.get_base_damage(baseDamage)
 	queue_free()
 
 func get_damage(damage):
+	if is_destroyed:
+		return
 	hp -= damage
 	if hp <= 0:
-		spawner.active_enemies -= 1
+		is_destroyed = true
+		spawner.enemy_destroyed()
 		Globals.currentMap.gold += goldYield
 		queue_free()

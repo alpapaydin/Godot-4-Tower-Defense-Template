@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8725vkgyjjo8"
-path="res://.godot/imported/MonkeyMeadow_No_UI.webp-14e761a99237dbf08ff0a4b309a9ae64.ctex"
+uid="uid://didi8ffqykvkh"
+path="res://.godot/imported/bg.png-66ad2c1b9510f035ef784ecbef42103c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/maps/MonkeyMeadow_No_UI.webp"
-dest_files=["res://.godot/imported/MonkeyMeadow_No_UI.webp-14e761a99237dbf08ff0a4b309a9ae64.ctex"]
+source_file="res://Assets/menu/bg.png"
+dest_files=["res://.godot/imported/bg.png-66ad2c1b9510f035ef784ecbef42103c.ctex"]
 
 [params]
 

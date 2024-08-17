@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://efjbh7i3n3nn"]
+[gd_scene load_steps=2 format=3 uid="uid://3ap3on04gj27"]
 
-[ext_resource type="Script" path="res://Scenes/ui/gameOver/game_over_panel.gd" id="1_7egy2"]
+[ext_resource type="Script" path="res://Scenes/ui/mapCompleted/mapCompleted.gd" id="1_r4qa7"]
 
 [node name="GameOverPanel" type="PanelContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7egy2")
+script = ExtResource("1_r4qa7")
 
 [node name="CenterPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -25,7 +25,7 @@ theme_override_constants/separation = 10
 
 [node name="GameOverText" type="Label" parent="CenterPanel/VBoxContainer"]
 layout_mode = 2
-text = "Game Over
+text = "Map Completed!
 "
 horizontal_alignment = 1
 
@@ -34,7 +34,7 @@ layout_mode = 2
 
 [node name="RetryButton" type="Button" parent="CenterPanel/VBoxContainer"]
 layout_mode = 2
-text = "Retry"
+text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="CenterPanel/VBoxContainer"]
 layout_mode = 2
