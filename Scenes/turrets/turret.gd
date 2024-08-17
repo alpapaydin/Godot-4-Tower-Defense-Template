@@ -1,5 +1,7 @@
 extends Node2D
 
+signal turretUpdated
+
 var turret_type := "":
 	set(value):
 		turret_type = value
@@ -23,6 +25,8 @@ var attack_range := 1.0
 var damage := 1.0
 var bulletSpeed := 200.0
 var bulletPierce := 1
+
+var turret_level := 1
 
 func _process(_delta):
 	if not deployed:
@@ -87,6 +91,21 @@ func attack():
 
 func _on_collision_area_input_event(_viewport, _event, _shape_idx):
 	if deployed and Input.is_action_just_pressed("LeftClick"):
+		if is_instance_valid(Globals.hud.open_details_pane):
+			if Globals.hud.open_details_pane.turret == self:
+				return
+			Globals.hud.open_details_pane.queue_free()
 		var turretDetailsScene := preload("res://Scenes/ui/turretUI/turret_details.tscn")
 		var details := turretDetailsScene.instantiate()
+		details.turret = self
 		Globals.hud.add_child(details)
+		Globals.hud.open_details_pane = details
+
+func upgrade_turret():
+	turret_level += 1
+	for upgrade in Data.turrets[turret_type]["upgrades"].keys():
+		if Data.turrets[turret_type]["upgrades"][upgrade]["multiplies"]:
+			set(upgrade, get(upgrade) * Data.turrets[turret_type]["upgrades"][upgrade]["amount"])
+		else:
+			set(upgrade, get(upgrade) + Data.turrets[turret_type]["upgrades"][upgrade]["amount"])
+	turretUpdated.emit()

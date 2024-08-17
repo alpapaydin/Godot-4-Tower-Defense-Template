@@ -2,6 +2,7 @@ extends Control
 
 var next_wait_time := 0
 var waited := 0
+var open_details_pane : PanelContainer
 
 func	 _ready():
 	Globals.hud = self
@@ -35,3 +36,8 @@ func _on_wave_wait_timer_timeout():
 
 func update_enemy_count(remain):
 	%RemainLabel.text = "Enemies: "+str(remain)
+
+func reset():
+	if open_details_pane:
+		open_details_pane.queue_free()
+		open_details_pane = null

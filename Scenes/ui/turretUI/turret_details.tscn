@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dunjwx3q7asjq"]
+[gd_scene load_steps=4 format=3 uid="uid://dunjwx3q7asjq"]
 
+[ext_resource type="Script" path="res://Scenes/ui/turretUI/turret_details.gd" id="1_0x613"]
 [ext_resource type="Texture2D" uid="uid://83kim8fm0f2s" path="res://Assets/turrets/technoturret.png" id="1_1lsyn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vopfk"]
@@ -16,13 +17,25 @@ offset_top = -20.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+script = ExtResource("1_0x613")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="TurretName" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TurretName" type="Label" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Basic Turret"
+horizontal_alignment = 1
+
+[node name="TurretLevel" type="Label" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Level 1
+"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
@@ -35,6 +48,7 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vopfk")
 
 [node name="TurretTexture" type="TextureRect" parent="VBoxContainer/Preview"]
+unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("1_1lsyn")
@@ -47,6 +61,7 @@ size_flags_vertical = 3
 columns = 2
 
 [node name="DamageLabel" type="Label" parent="VBoxContainer/Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -54,6 +69,7 @@ text = "Damage: 1"
 horizontal_alignment = 1
 
 [node name="SpeedLabel" type="Label" parent="VBoxContainer/Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -61,6 +77,7 @@ text = "Speed: 1"
 horizontal_alignment = 1
 
 [node name="RangeLabel" type="Label" parent="VBoxContainer/Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -68,6 +85,7 @@ text = "Range: 1"
 horizontal_alignment = 1
 
 [node name="PierceLabel" type="Label" parent="VBoxContainer/Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -78,12 +96,17 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="UpgradeButton" type="Button" parent="VBoxContainer/Controls"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Upgrade"
 
 [node name="SellButton" type="Button" parent="VBoxContainer/Controls"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sell
 "
+
+[connection signal="pressed" from="VBoxContainer/Controls/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Controls/SellButton" to="." method="_on_sell_button_pressed"]

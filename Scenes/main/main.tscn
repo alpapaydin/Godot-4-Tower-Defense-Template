@@ -65,9 +65,11 @@ text = "HP: 20/20"
 [node name="WaveLabel" type="Label" parent="UI/HUD/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+horizontal_alignment = 1
 
 [node name="RemainLabel" type="Label" parent="UI/HUD/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+horizontal_alignment = 1
 
 [connection signal="timeout" from="UI/HUD/WaveWaitTimer" to="UI/HUD" method="_on_wave_wait_timer_timeout"]

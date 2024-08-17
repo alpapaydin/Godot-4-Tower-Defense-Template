@@ -24,3 +24,4 @@ func restart_current_level():
 	var newMap = currentLevelScene.instantiate()
 	newMap.map_type = selected_map
 	mainNode.add_child(newMap)
+	hud.reset()
