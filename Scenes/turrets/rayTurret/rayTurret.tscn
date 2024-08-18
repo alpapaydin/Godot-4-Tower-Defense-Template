@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpnr2j3gxucn"]
+[gd_scene load_steps=16 format=3 uid="uid://bpnr2j3gxucn"]
 
 [ext_resource type="Script" path="res://Scenes/turrets/rayTurret/ray_turret.gd" id="1_bpos3"]
 [ext_resource type="Texture2D" uid="uid://83kim8fm0f2s" path="res://Assets/turrets/technoturret.png" id="2_45tcr"]
+[ext_resource type="Shader" path="res://Scenes/turrets/rayTurret/laser.gdshader" id="3_qc2r3"]
+[ext_resource type="Texture2D" uid="uid://dr0ndem12yexg" path="res://Assets/bullets/Pixel.png" id="4_fjepc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aicnu"]
 radius = 22.8
@@ -11,13 +13,49 @@ radius = 230.11
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_mkadq"]
 
-[sub_resource type="Curve" id="Curve_ch72r"]
-_data = [Vector2(0, 0.424856), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vgadi"]
 
-[sub_resource type="Gradient" id="Gradient_mv06b"]
-offsets = PackedFloat32Array(0.0133333, 1)
-colors = PackedColorArray(1, 0.682353, 0, 1, 1, 0.172549, 0, 1)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_atx7l"]
+seamless = true
+noise = SubResource("FastNoiseLite_vgadi")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w82x7"]
+seed = 2
+frequency = 0.0094
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xayqg"]
+invert = true
+seamless = true
+seamless_blend_skirt = 0.459
+noise = SubResource("FastNoiseLite_w82x7")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_42t83"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kd7ay"]
+seamless = true
+noise = SubResource("FastNoiseLite_42t83")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yptw7"]
+shader = ExtResource("3_qc2r3")
+shader_parameter/scroll1 = Vector2(1, 0.4)
+shader_parameter/scroll2 = Vector2(0.2, 2)
+shader_parameter/speed = 0.342
+shader_parameter/xStretch = 1.0
+shader_parameter/yStretch = 0.1
+shader_parameter/laserSize = 0.814
+shader_parameter/wobbliness = 0.084
+shader_parameter/color1 = Color(1, 0, 0, 1)
+shader_parameter/color2 = Color(1, 0.588235, 0, 1)
+shader_parameter/colorMixFactor = 3.528
+shader_parameter/glowFactor = 3.0
+shader_parameter/minAlpha = 0.5
+shader_parameter/NOISE_PATTERN1 = SubResource("NoiseTexture2D_atx7l")
+shader_parameter/NOISE_PATTERN2 = SubResource("NoiseTexture2D_xayqg")
+shader_parameter/TRANSPARENCY_VARIATION = SubResource("NoiseTexture2D_kd7ay")
+
+[sub_resource type="Curve" id="Curve_ch72r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.369942), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Turret" type="Node2D"]
 script = ExtResource("1_bpos3")
@@ -51,9 +89,10 @@ collision_layer = 8
 shape = SubResource("SegmentShape2D_mkadq")
 
 [node name="Line2D" type="Line2D" parent="HitArea"]
+material = SubResource("ShaderMaterial_yptw7")
 points = PackedVector2Array(0, 0, 0, 0)
 width_curve = SubResource("Curve_ch72r")
-gradient = SubResource("Gradient_mv06b")
+texture = ExtResource("4_fjepc")
 begin_cap_mode = 1
 end_cap_mode = 2
 
