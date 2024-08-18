@@ -68,6 +68,25 @@ const turrets := {
 		"scale": 1.0,
 		"rotates": true,
 	},
+	"melee": {
+		"stats": {
+			"damage": 5.0,
+			"attack_speed": 1.0,
+			"attack_range": 100.0,
+		},
+		"upgrades": {
+			"damage": {"amount": 2.5, "multiplies": false},
+			"attack_speed": {"amount": 1.5, "multiplies": true},
+		},
+		"name": "Explosive",
+		"cost": 70,
+		"upgrade_cost": 50,
+		"max_level": 3,
+		"scene": "res://Scenes/turrets/meleeTurret/meleeTurret.tscn",
+		"sprite": "res://Assets/turrets/dynamite.png",
+		"scale": 1.0,
+		"rotates": false,
+	},
 }
 
 const stats := {
@@ -139,6 +158,20 @@ const maps := {
 		"scene": "res://Scenes/maps/map1.tscn",
 		"baseHp": 10,
 		"startingGold": 100,
+		"spawner_settings":
+			{
+			"difficulty": {"initial": 1.0, "increase": 1.2, "multiplies": true},
+			"max_waves": 10,
+			"wave_spawn_count": 10,
+			"special_waves": {},
+			},
+	},
+	"map2": {
+		"name": "Desert Map",
+		"bg": "res://Assets/maps/map2.png",
+		"scene": "res://Scenes/maps/map2.tscn",
+		"baseHp": 15,
+		"startingGold": 200,
 		"spawner_settings":
 			{
 			"difficulty": {"initial": 1.0, "increase": 1.2, "multiplies": true},

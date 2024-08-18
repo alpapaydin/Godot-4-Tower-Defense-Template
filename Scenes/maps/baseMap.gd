@@ -20,8 +20,6 @@ func _ready():
 	Globals.turretsNode = $Turrets
 	Globals.projectilesNode = $Projectiles
 	Globals.currentMap = self
-	#Globals.baseHpChanged.emit(baseHP, baseMaxHp)
-	#Globals.goldChanged.emit(gold)
 
 func get_base_damage(damage):
 	if gameOver:

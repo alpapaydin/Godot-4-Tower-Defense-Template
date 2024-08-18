@@ -1,5 +1,4 @@
 extends Node
-
 @warning_ignore("unused_signal")
 signal goldChanged(newGold)
 @warning_ignore("unused_signal")

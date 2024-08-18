@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsasxqvr8q0gk"]
+
+[ext_resource type="Script" path="res://Scenes/maps/baseMap.gd" id="1_gpdsc"]
+[ext_resource type="Texture2D" uid="uid://c08ieo1nh44dc" path="res://Assets/maps/map2.png" id="2_4tkgh"]
+[ext_resource type="Script" path="res://Scenes/maps/EnemySpawner.gd" id="3_1nn7n"]
+
+[sub_resource type="Curve2D" id="Curve2D_bs0b4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -598, 42, 0, 0, 0, 0, -352, 38, 0, 0, 0, 0, -313, -95, 0, 0, 0, 0, -243, -132, 0, 0, 0, 0, -154, -109, 0, 0, 0, 0, -105, 29, 0, 0, 0, 0, 122, 39, -19.6431, -14.592, 19.6431, 14.592, 164, 165, 0, 0, 0, 0, 258, 210, 0, 0, 0, 0, 368, 186, 0, 0, 0, 0, 437, 38, 0, 0, 0, 0, 532, 37, 0, 0, 0, 0, 527, -1, 0, 0, 0, 0, 404, 4, 23.5717, -19.6431, -23.5717, 19.6431, 343, 148, 0, 0, 0, 0, 255, 180, 10.6634, 15.7145, -10.6634, -15.7145, 187, 127, 0, 0, 0, 0, 150, 7, 0, 0, 0, 0, -69, 1, 0, 0, 0, 0, -127, -144, 0, 0, 0, 0, -229, -168, 0, 0, 0, 0, -336, -122, 0, 0, 0, 0, -391, 4, 0, 0, 0, 0, -596, 6)
+}
+point_count = 24
+
+[node name="TestMap" type="Node2D"]
+script = ExtResource("1_gpdsc")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_4tkgh")
+
+[node name="PathSpawner" type="Path2D" parent="."]
+curve = SubResource("Curve2D_bs0b4")
+script = ExtResource("3_1nn7n")
+
+[node name="SpawnDelay" type="Timer" parent="PathSpawner"]
+wait_time = 0.2
+one_shot = true
+
+[node name="WaveDelayTimer" type="Timer" parent="PathSpawner"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Turrets" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Obstacles" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(-600, -9, -398, -11, -367, -109, -309, -165, -221, -181, -119, -152, -67, -67, -50, -11, 161, -8, 182, 19, 207, 128, 258, 159, 318, 150, 362, 92, 381, 1, 403, -14, 533, -11, 553, 3, 555, 28, 548, 48, 528, 56, 441, 58, 428, 130, 395, 188, 317, 223, 235, 223, 156, 185, 120, 122, 106, 56, -104, 53, -129, 36, -158, -89, -221, -118, -274, -102, -309, -52, -321, 25, -343, 52, -603, 54)
+
+[connection signal="timeout" from="PathSpawner/SpawnDelay" to="PathSpawner" method="_on_spawn_delay_timeout"]
+[connection signal="timeout" from="PathSpawner/WaveDelayTimer" to="PathSpawner" method="_on_wave_delay_timer_timeout"]
