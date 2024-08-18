@@ -57,3 +57,6 @@ func _on_sell_button_pressed():
 	queue_free()
 	Globals.currentMap.gold += get_sell_price()
 	turret.queue_free()
+
+func _on_close_button_pressed():
+	turret.close_details_pane()

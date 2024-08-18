@@ -555,7 +555,7 @@ texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ds6ah")
 autoplay = "default"
-frame_progress = 0.729441
+frame_progress = 0.31737
 
 [node name="CollisionArea" type="Area2D" parent="."]
 collision_layer = 2
