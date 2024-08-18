@@ -59,7 +59,7 @@ const turrets := {
 			"ray_length": {"amount": 1.5, "multiplies": true},
 			"ray_duration": {"amount": 1.5, "multiplies": true},
 		},
-		"name": "Flamethrower",
+		"name": "Raygun",
 		"cost": 30,
 		"upgrade_cost": 50,
 		"max_level": 3,
