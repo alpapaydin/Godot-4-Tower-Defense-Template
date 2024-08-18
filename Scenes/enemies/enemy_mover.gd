@@ -44,8 +44,19 @@ func get_damage(damage):
 	if is_destroyed:
 		return
 	hp -= damage
+	damage_animation()
 	if hp <= 0:
 		is_destroyed = true
 		spawner.enemy_destroyed()
 		Globals.currentMap.gold += goldYield
 		queue_free()
+
+func damage_animation():
+	var tween := create_tween()
+	tween.tween_property(self, "v_offset", 0, 0.05)
+	tween.tween_property(self, "modulate", Color.ORANGE_RED, 0.1)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.3)
+	tween.set_parallel()
+	tween.tween_property(self, "v_offset", -5, 0.2)
+	tween.set_parallel(false)
+	tween.tween_property(self, "v_offset", 0, 0.2)

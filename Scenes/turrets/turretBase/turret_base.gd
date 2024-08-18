@@ -81,6 +81,8 @@ func _on_collision_area_input_event(_viewport, _event, _shape_idx):
 	if deployed and Input.is_action_just_pressed("LeftClick"):
 		if is_instance_valid(Globals.hud.open_details_pane):
 			if Globals.hud.open_details_pane.turret == self:
+				Globals.hud.open_details_pane.queue_free()
+				Globals.hud.open_details_pane = null
 				return
 			Globals.hud.open_details_pane.queue_free()
 		var turretDetailsScene := preload("res://Scenes/ui/turretUI/turret_details.tscn")
