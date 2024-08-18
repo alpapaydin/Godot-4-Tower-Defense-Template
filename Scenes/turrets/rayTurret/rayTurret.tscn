@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpnr2j3gxucn"]
+
+[ext_resource type="Script" path="res://Scenes/turrets/rayTurret/ray_turret.gd" id="1_bpos3"]
+[ext_resource type="Texture2D" uid="uid://83kim8fm0f2s" path="res://Assets/turrets/technoturret.png" id="2_45tcr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aicnu"]
+radius = 22.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kae7m"]
+radius = 230.11
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_mkadq"]
+
+[sub_resource type="Curve" id="Curve_ch72r"]
+_data = [Vector2(0, 0.424856), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_mv06b"]
+offsets = PackedFloat32Array(0.0133333, 1)
+colors = PackedColorArray(1, 0.682353, 0, 1, 1, 0.172549, 0, 1)
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_bpos3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+texture = ExtResource("2_45tcr")
+
+[node name="CollisionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+shape = SubResource("CircleShape2D_aicnu")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_kae7m")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="HitArea" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("SegmentShape2D_mkadq")
+
+[node name="Line2D" type="Line2D" parent="HitArea"]
+points = PackedVector2Array(0, 0, 0, 0)
+width_curve = SubResource("Curve_ch72r")
+gradient = SubResource("Gradient_mv06b")
+begin_cap_mode = 1
+end_cap_mode = 2
+
+[node name="RayDuration" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="input_event" from="CollisionArea" to="." method="_on_collision_area_input_event"]
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
+[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="RayDuration" to="." method="_on_ray_duration_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="attack"]

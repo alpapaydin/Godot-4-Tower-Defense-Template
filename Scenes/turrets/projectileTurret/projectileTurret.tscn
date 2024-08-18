@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://edmi5jtva5y2"]
 
-[ext_resource type="Script" path="res://Scenes/turrets/turret.gd" id="1_7ca8v"]
+[ext_resource type="Script" path="res://Scenes/turrets/projectileTurret/projectileTurret.gd" id="1_7ca8v"]
 [ext_resource type="Texture2D" uid="uid://83kim8fm0f2s" path="res://Assets/turrets/technoturret.png" id="2_2x7ix"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aicnu"]

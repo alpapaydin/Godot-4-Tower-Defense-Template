@@ -5,10 +5,9 @@ const turrets := {
 		"stats": {
 			"damage": 10,
 			"attack_speed": 2.0,
-			"attack_range": 1.0,
+			"attack_range": 200.0,
 			"bulletSpeed": 200.0,
 			"bulletPierce": 1,
-			"rotates": true,
 		},
 		"upgrades": {
 			"damage": {"amount": 2.5, "multiplies": false},
@@ -18,19 +17,19 @@ const turrets := {
 		"cost": 50,
 		"upgrade_cost": 50,
 		"max_level": 2,
-		"scene": "res://Scenes/turrets/turretBase.tscn",
+		"scene": "res://Scenes/turrets/projectileTurret/projectileTurret.tscn",
 		"sprite": "res://Assets/turrets/technoturret.png",
 		"scale": 4.0,
+		"rotates": true,
 		"bullet": "fire",
 	},
 	"laser": {
 		"stats": {
 			"damage": 0.5,
 			"attack_speed": 20.0,
-			"attack_range": 1.0,
+			"attack_range": 250.0,
 			"bulletSpeed": 400.0,
 			"bulletPierce": 4,
-			"rotates": false,
 		},
 		"upgrades": {
 			"damage": {"amount": 2.5, "multiplies": false},
@@ -40,11 +39,45 @@ const turrets := {
 		"cost": 70,
 		"upgrade_cost": 50,
 		"max_level": 3,
-		"scene": "res://Scenes/turrets/turretBase.tscn",
+		"scene": "res://Scenes/turrets/projectileTurret/projectileTurret.tscn",
 		"sprite": "res://Assets/turrets/laserturret.png",
 		"scale": 1.0,
+		"rotates": false,
 		"bullet": "laser",
 	},
+	"ray": {
+		"stats": {
+			"damage": 0.5,
+			"attack_speed": 0.5,
+			"attack_range": 300.0,
+			"ray_duration": 1.0,
+			"ray_length": 300.0,
+		},
+		"upgrades": {
+			"damage": {"amount": 1.0, "multiplies": false},
+			"attack_speed": {"amount": 1.5, "multiplies": true},
+			"ray_length": {"amount": 1.5, "multiplies": true},
+			"ray_duration": {"amount": 1.5, "multiplies": true},
+		},
+		"name": "Flamethrower",
+		"cost": 30,
+		"upgrade_cost": 50,
+		"max_level": 3,
+		"scene": "res://Scenes/turrets/rayTurret/rayTurret.tscn",
+		"sprite": "res://Assets/turrets/reallaser.png",
+		"scale": 1.0,
+		"rotates": true,
+	},
+}
+
+const stats := {
+	"damage": {"name": "Damage"},
+	"attack_speed": {"name": "Speed"},
+	"attack_range": {"name": "Range"},
+	"bulletSpeed": {"name": "Bullet Speed"},
+	"bulletPierce": {"name": "Bullet Pierce"},
+	"ray_length": {"name": "Ray Length"},
+	"ray_duration": {"name": "Ray Duration"},
 }
 
 const bullets := {

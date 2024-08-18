@@ -1,4 +1,5 @@
 extends Node2D
+class_name Turret
 
 signal turretUpdated
 
@@ -7,6 +8,7 @@ var turret_type := "":
 		turret_type = value
 		$Sprite2D.texture = load(Data.turrets[value]["sprite"])
 		$Sprite2D.scale = Vector2(Data.turrets[value]["scale"],Data.turrets[value]["scale"])
+		rotates = Data.turrets[value]["rotates"]
 		for stat in Data.turrets[value]["stats"].keys():
 			set(stat, Data.turrets[value]["stats"][stat])
 
@@ -14,18 +16,18 @@ var turret_type := "":
 var deployed = false
 var can_place = false
 #Attacking
+var rotates := true
 var current_target = null
 #Stats
 var attack_speed := 1.0:
 	set(value):
 		attack_speed = value
 		$AttackCooldown.wait_time = 1.0/value
-var rotates := true
-var attack_range := 1.0
+var attack_range := 1.0:
+	set(value):
+		attack_range = value
+		$DetectionArea/CollisionShape2D.shape.radius = value
 var damage := 1.0
-var bulletSpeed := 200.0
-var bulletPierce := 1
-
 var turret_level := 1
 
 func _process(_delta):
@@ -75,20 +77,6 @@ func try_get_closest_target():
 	if closest_area:
 		current_target = closest_area.get_parent()
 
-func attack():
-	if is_instance_valid(current_target):
-		var projectileScene := preload("res://Scenes/turrets/bullet/bulletBase.tscn")
-		var projectile := projectileScene.instantiate()
-		projectile.bullet_type = Data.turrets[turret_type]["bullet"]
-		projectile.damage = damage
-		projectile.speed = bulletSpeed
-		projectile.pierce = bulletPierce
-		Globals.projectilesNode.add_child(projectile)
-		projectile.position = position
-		projectile.target = current_target.position
-	else:
-		try_get_closest_target()
-
 func _on_collision_area_input_event(_viewport, _event, _shape_idx):
 	if deployed and Input.is_action_just_pressed("LeftClick"):
 		if is_instance_valid(Globals.hud.open_details_pane):
@@ -109,3 +97,9 @@ func upgrade_turret():
 		else:
 			set(upgrade, get(upgrade) + Data.turrets[turret_type]["upgrades"][upgrade]["amount"])
 	turretUpdated.emit()
+
+func attack():
+	if is_instance_valid(current_target):
+		pass
+	else:
+		try_get_closest_target()

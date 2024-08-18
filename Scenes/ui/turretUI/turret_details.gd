@@ -19,12 +19,15 @@ func set_props():
 	%TurretTexture.texture = load(Data.turrets[turret.turret_type]["sprite"])
 	%TurretName.text = Data.turrets[turret.turret_type]["name"]
 	%TurretLevel.text = "Level "+str(turret.turret_level)
-	%DamageLabel.text = "Damage: "+str(round(turret.damage))
-	%SpeedLabel.text = "Speed: "+str(round(turret.attack_speed))
-	%RangeLabel.text = "Range: "+str(round(turret.attack_range))
-	%PierceLabel.text = "Pierce: "+str(turret.bulletPierce)
 	%UpgradeButton.text = "Upgrade for "+str(get_upgrade_price())
 	%SellButton.text = "Sell for "+str(get_sell_price())
+	for c in %Stats.get_children():
+		c.queue_free()
+	var statLabelScene := preload("res://Scenes/ui/turretUI/stat_label.tscn")
+	for stat in Data.turrets[turret.turret_type]["stats"].keys():
+		var statLabel := statLabelScene.instantiate()
+		statLabel.text = Data.stats[stat]["name"]+" "+str(round(turret.get(stat)))
+		%Stats.add_child(statLabel)
 
 func _on_upgrade_button_pressed():
 	if check_can_upgrade():

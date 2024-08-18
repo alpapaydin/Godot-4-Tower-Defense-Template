@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cw8dl6kw77qmf"]
 
-[ext_resource type="Script" path="res://Scenes/turrets/bullet/bulletBase.gd" id="1_a00cp"]
+[ext_resource type="Script" path="res://Scenes/turrets/projectileTurret/bullet/bulletBase.gd" id="1_a00cp"]
 [ext_resource type="SpriteFrames" uid="uid://djv5uvpfktdlq" path="res://Assets/bullets/bullet2.tres" id="2_otc75"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_govwh"]

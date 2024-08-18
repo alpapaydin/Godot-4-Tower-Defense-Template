@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dunjwx3q7asjq"]
+[gd_scene load_steps=5 format=3 uid="uid://dunjwx3q7asjq"]
 
 [ext_resource type="Script" path="res://Scenes/ui/turretUI/turret_details.gd" id="1_0x613"]
 [ext_resource type="Texture2D" uid="uid://83kim8fm0f2s" path="res://Assets/turrets/technoturret.png" id="1_1lsyn"]
+[ext_resource type="PackedScene" uid="uid://bg1le57woay1j" path="res://Scenes/ui/turretUI/stat_label.tscn" id="3_bd6mv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vopfk"]
 
@@ -56,41 +57,14 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Stats" type="GridContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
 
-[node name="DamageLabel" type="Label" parent="VBoxContainer/Stats"]
+[node name="StatLabel" parent="VBoxContainer/Stats" instance=ExtResource("3_bd6mv")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "Damage: 1"
-horizontal_alignment = 1
-
-[node name="SpeedLabel" type="Label" parent="VBoxContainer/Stats"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "Speed: 1"
-horizontal_alignment = 1
-
-[node name="RangeLabel" type="Label" parent="VBoxContainer/Stats"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "Range: 1"
-horizontal_alignment = 1
-
-[node name="PierceLabel" type="Label" parent="VBoxContainer/Stats"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "Pierce: 1"
-horizontal_alignment = 1
 
 [node name="Controls" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

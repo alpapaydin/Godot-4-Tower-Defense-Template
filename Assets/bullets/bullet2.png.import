@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5wp74eaaqsil"
-path="res://.godot/imported/Bullet Pixel 8x8 part 1 A.png-f4db625523731446ada510a49afccd02.ctex"
+uid="uid://yyjogamlxt31"
+path="res://.godot/imported/bullet2.png-0b12249698edd269ea3e08eac6bbffef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/bullets/Bullet Pixel 8x8 part 1 A.png"
-dest_files=["res://.godot/imported/Bullet Pixel 8x8 part 1 A.png-f4db625523731446ada510a49afccd02.ctex"]
+source_file="res://Assets/bullets/bullet2.png"
+dest_files=["res://.godot/imported/bullet2.png-0b12249698edd269ea3e08eac6bbffef.ctex"]
 
 [params]
 
