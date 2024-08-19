@@ -38,6 +38,5 @@ func update_enemy_count(remain):
 	%RemainLabel.text = "Enemies: "+str(remain)
 
 func reset():
-	if open_details_pane:
-		open_details_pane.queue_free()
-		open_details_pane = null
+	if is_instance_valid(open_details_pane):
+		open_details_pane.turret.close_details_pane()

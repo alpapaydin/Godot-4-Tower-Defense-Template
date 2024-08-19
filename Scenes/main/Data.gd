@@ -160,7 +160,7 @@ const maps := {
 		"startingGold": 100,
 		"spawner_settings":
 			{
-			"difficulty": {"initial": 1.0, "increase": 1.2, "multiplies": true},
+			"difficulty": {"initial": 2.0, "increase": 1.5, "multiplies": true},
 			"max_waves": 10,
 			"wave_spawn_count": 10,
 			"special_waves": {},
